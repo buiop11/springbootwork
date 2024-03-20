@@ -41,6 +41,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration // IoC
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	@Bean // 빈으로 등록시켜줌 
+	public BCryptPasswordEncoder encode() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 //		super.configure(http); // super 삭제 - 기본 시큐리티가 가지고 있는 기능이 다 비활성화 됨.
