@@ -1,0 +1,5 @@
+package com.cos.photogramstart.domain.user;
+
+public interface UserRepository {
+
+}

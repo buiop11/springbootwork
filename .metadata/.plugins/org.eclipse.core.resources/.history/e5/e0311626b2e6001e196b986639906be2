@@ -1,0 +1,19 @@
+package com.cos.photogramstart.service;
+
+import org.springframework.stereotype.Service;
+
+import com.cos.photogramstart.domain.user.User;
+
+@Service // IoC , 트랜잭션 관리 
+public class AuthService {
+
+	
+	public void signin(User user) {
+		// 회원가입 진행 
+		
+		
+		
+	}
+	
+	
+}
