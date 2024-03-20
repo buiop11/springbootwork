@@ -1,0 +1,24 @@
+package com.cos.controllerdemo.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller  // 파일을 리턴할 거기 때문에 restcontroller 말고 그냥 컨트롤러씀 
+public class HttpRespController {
+
+	@GetMapping("/txt")
+	public String txt() {
+		return "a.txt";  // 프레임 워크를 사용(틀이 이미 정해져 있음 - 일반 정적파일은 resources/static 폴더가 디폴트 경로이다.
+	}
+	
+	/*
+	 * .mustache 파일로 해보기
+	 * -> MVN에서 다운로드 (https://mvnrepository.com/)
+	 * -> mustache 검색 -> spring boot starter mustache 
+	 * -> 들어가서 Maven dependency 복사 
+	 * -> pom.xml 에 dependencies 안에 넣기 
+	 * */
+	
+	
+	
+}

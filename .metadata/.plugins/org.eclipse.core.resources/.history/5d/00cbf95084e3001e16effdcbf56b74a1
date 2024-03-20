@@ -1,0 +1,15 @@
+package com.cos.controllerdemo.web;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HttpResponseJsonController {
+
+	@GetMapping("/resp/json")
+	public String respJson() {
+		return "문자열";
+	}
+	
+	
+}

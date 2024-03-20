@@ -1,0 +1,5 @@
+package com.cos.controllerdemo.domain;
+
+public class User {
+
+}
