@@ -1,0 +1,18 @@
+package com.cos.photogramstart.config.auth;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PrincipalDetailsService implements UserDetailsService{
+
+	// 상속받아서 자동으로 등록한 함수
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

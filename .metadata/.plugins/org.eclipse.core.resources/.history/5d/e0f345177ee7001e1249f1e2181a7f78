@@ -1,0 +1,5 @@
+package com.cos.photogramstart.handler.ex;
+
+public class CustomValidationException {
+
+}
