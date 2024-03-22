@@ -1,0 +1,58 @@
+package com.cos.photogramstart.config.auth;
+
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import com.cos.photogramstart.domain.user.User;
+import lombok.Data;
+
+@Data
+public class PrincipalDetails implements UserDetails {
+
+	private static final long serialVersionUID = 1L;
+	
+	private User user;
+	
+	// 생성자 - user을 담아서 생성
+	public PrincipalDetails(User user) {
+		this.user = user;
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() { // 권한을 가져오는 함수(기본)
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {  // 비밀번호 가져오는 함수 (기본)
+		return user.getPassword();
+	}
+
+	@Override
+	public String getUsername() {
+		return user.getUsername();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {  // 계정만료 확인 - 우리는 안써서 true로 처리 
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() { // 계정잠김 확인 - 우리는 true로 처리 
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() { //  계정만기 정도는 다 truefh cjfl 
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+}

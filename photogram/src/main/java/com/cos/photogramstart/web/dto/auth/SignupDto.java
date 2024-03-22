@@ -1,13 +1,11 @@
 package com.cos.photogramstart.web.dto.auth;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
 import com.cos.photogramstart.domain.user.User;
 import lombok.Data;
 
-@Data // Getter, Setter 
+@Data // Getter + Setter 
 public class SignupDto {
 
 	@Size(min = 2, max=20)  // 최소 2 ~ 20자 이상 넘어가면 안된다.

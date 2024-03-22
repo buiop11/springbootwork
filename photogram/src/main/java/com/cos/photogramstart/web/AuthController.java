@@ -66,9 +66,10 @@ public class AuthController {
 		 */
 		
 		// 에러가 발생한 경우 - 오류페이지 리턴 
+		// bindingResult : 스프링이 제공하는 검증 오류 처리, 보관하는 객체
 		if(bindingResult.hasErrors()) {
-			Map<String, String> errorMap = new HashMap<>();
 			
+			Map<String, String> errorMap = new HashMap<>();
 			for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
  				errorMap.put(error.getField(), error.getDefaultMessage());
  				System.out.println("====================================");

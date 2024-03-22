@@ -16,28 +16,28 @@ public class ViewControllerTest {
 //		return "auth/signin";
 //	}
 	
-	@GetMapping("/image/story")
-	public String storyPage() {
-		return "image/story";
-	}
+//	@GetMapping("/image/story")
+//	public String storyPage() {
+//		return "image/story";
+//	}
 	
-	@GetMapping("/image/popular")
-	public String popularPage() {
-		return "image/popular";
-	}
+//	@GetMapping("/image/popular")
+//	public String popularPage() {
+//		return "image/popular";
+//	}
 	
-	@GetMapping("/image/upload")
-	public String uploadPage() {
-		return "image/upload";
-	}
+//	@GetMapping("/image/upload")
+//	public String uploadPage() {
+//		return "image/upload";
+//	}
 	
-	@GetMapping("/user/profile")
-	public String profilePage() {
-		return "user/profile";
-	}
+//	@GetMapping("/user/profile")
+//	public String profilePage() {
+//		return "user/profile";
+//	}
 
-	@GetMapping("/user/update")
-	public String updatePage() {
-		return "user/update";
-	}
+//	@GetMapping("/user/update")
+//	public String updatePage() {
+//		return "user/update";
+//	}
 }

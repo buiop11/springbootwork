@@ -1,0 +1,8 @@
+// (1) 회원정보 수정
+function update(userId) {
+	
+	let data = $("#profileUpdate").serialize();  // jquery 로 id 찾기
+	console.log(data);
+
+
+}

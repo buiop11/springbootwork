@@ -2,7 +2,7 @@ package com.cos.photogramstart.handler.ex;
 
 import java.util.Map;
 
-public class CustomValidationException extends RuntimeException {  // 익셉션일 되려면 상속 받기 
+public class CustomValidationException extends RuntimeException {  // 익셉션이 되려면 상속 받기 
 
 	// 객체를 구분할 때. 중요한건 아니다. JVM에게 중요한것 
 	private static final long serialVersionUID = 1L;

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+// 공통응답 클래스
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -14,7 +15,6 @@ public class CMRespDto<T> {  //  "공통응답 클래스"인데,  에러나 User
 	
 	private int code;   //  1: 성공 , -1 : 실패 
 	private String message; 
-	
 //	private Map<String, String> errorMap;
 	private T data;
 	

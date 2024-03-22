@@ -1,0 +1,29 @@
+package com.cos.photogramstart.web.dto.user;
+
+import org.springframework.security.core.userdetails.User;
+
+import lombok.Data;
+
+// 사용자 업데이트 시 받을 것만 정리
+@Data
+public class UserUpdateDto {
+
+	private String name;  		// 필수값
+	private String password; // 필수값
+	private String website;
+	private String bio;
+	private String phone;
+	private String gender;
+	
+	public User toEntity() {
+		return User.builder()
+				.name(name)
+				.password(password)
+				.website(website)
+				.bio(bio)
+				.phone(phone)
+				.gender(gender)
+				.build();
+	}
+	
+}

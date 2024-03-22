@@ -1,0 +1,25 @@
+package com.cos.photogramstart.web;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.cos.photogramstart.config.auth.PrincipalDetails;
+
+@Controller
+public class UserController {
+	
+	@GetMapping("/user/{id}")
+	public String profile(@PathVariable int id) {  // 일단 회원 숫자로 
+		return "user/profile"; 
+	}
+	
+	@GetMapping("/user/{id}/update")
+	public String update(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails ) { 
+		// @AuthenticationPrincipal PrincipalDetails principalDetails :세션안 숨은 시큐리티 홀더에 있는 세션 확인하기 위함 
+		
+		return "user/update"; 
+	}
+
+}
