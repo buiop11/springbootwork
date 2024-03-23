@@ -37,6 +37,7 @@ public class ControllerExceptionHandler {
 	// 수정시 사용할 Excpetion 추가 - 데이터를 리턴 
 	@ExceptionHandler(CustomValidationApiException.class)   
 	public ResponseEntity<?> validationApiException(CustomValidationApiException e) {
+//		System.out.println("=================================익셉션 실행? ======");
 		return new ResponseEntity<>( new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST );  // body, status코드
 	}
 	

@@ -11,7 +11,12 @@ public class CustomValidationApiException extends RuntimeException {  // 익셉�
 	private String message; 
 	private Map<String, String> errorMap;
 	
-	// 생성자 
+	// 생성자 (메시지)
+	public CustomValidationApiException(String message) {
+		super(message);  // 부모가 어차피 글을 리턴해준다
+	}
+	
+	// 생성자 (메세지, 에러맵)
 	public CustomValidationApiException(String message, Map<String ,String> errorMap) {
 //		this.message = message;
 		super(message);  // 부모가 어차피 글을 리턴해준다

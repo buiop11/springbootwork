@@ -1,0 +1,16 @@
+package com.cos.photogramstart.domain.subscribe;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+//어노테이션이 없어도 JpaRepository를 상속하면 IoC등록이 자동으로 된다.
+public interface SubscribeRepository extends JpaRepository<Subscribe, Integer>{
+
+	// 네이티브 쿼리 작성 - prepersist 작동을안함 : 키워드는 대문자로, 변수 바인딩은 :변수로 기입
+	@Query(value = "INSERT INTO subscribe(fromUserId, toUserId, createDate) VALUES (:fromUserId, :toUserId, now())", nativeQuery = true)
+	int mSubscribe(int fromUserId, int toUserId);
+	
+	@Query(value = "DELETE FROM subscribe WHERE fromUserId = :fromUserId AND toUserId = :toUserId", nativeQuery = true)
+	int mUnSubscribe(int fromUserId, int toUserId);
+	
+	
+}
