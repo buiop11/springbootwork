@@ -23,7 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 //	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 //		http.csrf().disable();
 //		http.authorizeRequests()
-//			.antMatchers("/",  "/user/**", "/image/**",  "/subscribe/**", "/comment/**").authenticated()
+//			.antMatchers("/",  "/user/**", "/image/**",  "/subscribe/**", "/comment/**", "/api/**").authenticated()
 //			.anyRequest().permitAll()
 //			.and()
 //			.formLogin()
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		http.csrf().disable(); // 기본 csrf를 사용하지 않는다.  정상사용자인지 구분X
 		http.authorizeRequests()
-			.antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**").authenticated() // 인증이 필요한 주소
+			.antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**", "/api/**").authenticated() // 인증이 필요한 주소
 			.anyRequest().permitAll()  // 나머지는 모두 허용 
 			.and()
 			.formLogin()

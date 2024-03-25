@@ -1,8 +1,0 @@
-package com.cos.controllerdemo.web;
-
-import org.springframework.stereotype.Controller;
-
-@Controller  // 파일을 리턴할 거기 때문에 restcontroller 말고 그냥 컨트롤러씀 
-public class HttpRespController {
-
-}

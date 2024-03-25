@@ -1,5 +1,0 @@
-package com.cos.controllerdemo.web;
-
-public class HttpResponseJsonController {
-
-}

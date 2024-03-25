@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cos.photogramstart.handler.ex.CustomApiException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
 import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.util.Script;
@@ -31,14 +32,27 @@ public class ControllerExceptionHandler {
 	// 클라이언트에게 응답할 때는 Script 좋음(브라우저가받는다), 하지만  Ajax, Android 통신 - CMRespDto (개발자가 응답받을 때)
 	@ExceptionHandler(CustomValidationException.class)   
 	public String validationException(CustomValidationException e) {
-		return Script.back(e.getErrorMap().toString());
+//		System.out.println("==========Custom Validation ==익셉션 실행? ======");
+		
+		if( e.getErrorMap() == null ) {
+			return Script.back(e.getMessage());
+		} else {
+			return Script.back(e.getErrorMap().toString());
+		}
+		
 	}
 	
 	// 수정시 사용할 Excpetion 추가 - 데이터를 리턴 
 	@ExceptionHandler(CustomValidationApiException.class)   
 	public ResponseEntity<?> validationApiException(CustomValidationApiException e) {
-//		System.out.println("=================================익셉션 실행? ======");
+//		System.out.println("==========Custom Validation API ==익셉션 실행? ======");
 		return new ResponseEntity<>( new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST );  // body, status코드
+	}
+	
+	// 메시지만 노출하는 Exception
+	@ExceptionHandler(CustomApiException.class)   
+	public ResponseEntity<?> apiException(CustomApiException e) {
+		return new ResponseEntity<>( new CMRespDto<>(-1, e.getMessage(), null),  HttpStatus.BAD_REQUEST );
 	}
 	
 }

@@ -1,0 +1,26 @@
+package com.cos.photogramstart.service;
+
+import org.springframework.stereotype.Service;
+
+import com.cos.photogramstart.config.auth.PrincipalDetails;
+import com.cos.photogramstart.domain.image.ImageRepository;
+import com.cos.photogramstart.web.dto.image.ImageUploadDto;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class ImageService {
+
+	
+		private final ImageRepository imageRepository;
+	
+		// 사진 업로드 - 사진 객체, 등록자 정보 
+		public void imageUpload(ImageUploadDto imageUploadDto, PrincipalDetails principalDetails) {
+			
+			String imageFileName = imageUploadDto.getFile().getOriginalFilename();
+			
+		}
+	
+	
+}
