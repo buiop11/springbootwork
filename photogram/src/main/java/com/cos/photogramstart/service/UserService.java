@@ -1,16 +1,14 @@
 package com.cos.photogramstart.service;
 
 import java.util.function.Supplier;
-
-import javax.transaction.Transactional;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.domain.user.UserRepository;
+import com.cos.photogramstart.handler.ex.CustomException;
 import com.cos.photogramstart.handler.ex.CustomValidationApiException;
-
 import lombok.RequiredArgsConstructor;
 
 
@@ -21,6 +19,22 @@ public class UserService {
 	private final UserRepository userRepository;
 	// 패스워드 재 암호화
 	private final BCryptPasswordEncoder bcryptPasswordEncoder;
+
+	// select 시에도 트랜잭션 걸어주면 좋다. 에러? 
+	// @org.springframework.transaction.annotation.Transactional 에서만 propagation, isolation, timeout, readOnly, rollback 를 다 지원한다.
+	@Transactional(readOnly = true)
+	public User userProfile(int userId) {
+		
+		// select * from image where userId = :userId; -> JPA로 
+		User userEntity = userRepository.findById(userId).orElseThrow(()->{
+			throw new CustomException("해당 프로필 페이지는 없는 페이지입니다.");
+		});
+		
+//		userEntity.getImages().get(0);
+		
+		return userEntity;
+	}
+	
 	
 	@Transactional
 	public User UserUpdate(int id, User user) {
