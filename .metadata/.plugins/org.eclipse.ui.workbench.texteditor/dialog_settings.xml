@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="modal-subscribe"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="modal-subscribe"/>
+			<item value="subscribeInfoModalOpen"/>
+			<item value="love"/>
+			<item value="toggleSubscribe"/>
+			<item value="게시물"/>
+			<item value="취소"/>
+			<item value="사진등록"/>
+			<item value="userProfile"/>
 			<item value="build"/>
 			<item value="builder"/>
 			<item value="프로필 수정"/>
-			<item value="update"/>
-			<item value="popular"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -26,10 +26,38 @@
 		<!--유저정보 및 사진등록 구독하기-->
 		<div class="profile-right">
 			<div class="name-group">
-				<h2>${ user.name }</h2>
+				<h2>${ userDto.user.name }</h2>
 
+<!-- 방법 1 : 좋지 않음  -->
+<%-- 	<c:choose> --%>
+<%-- 		<c:when test="${ principal.user.id == user.id }"> --%>
+<!-- 				<button class="cta" onclick="location.href='/image/upload'">사진등록</button> -->
+<%-- 		</c:when> --%>
+<%-- 		<c:otherwise> --%>
+<!-- 				<button class="cta" onclick="toggleSubscribe(this)">구독하기</button> -->
+<%-- 		</c:otherwise> --%>
+<%-- 	</c:choose> --%>
+	
+	<!-- 방법2 : java 단에서 Dto로 리턴 변경처리  -->
+	<c:choose>
+		<c:when test="${ userDto.pageOwnerState }">
 				<button class="cta" onclick="location.href='/image/upload'">사진등록</button>
-				<button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+		</c:when>
+		<c:otherwise>
+		
+				<c:choose>
+					<c:when test="${ userDto.subscribeState }">
+						<button class="cta" onclick="toggleSubscribe(${ userDto.user.id }, this)">구독취소</button> <!-- principalid랑 다른 유저페이지가 다를수 있다. -->
+					</c:when>
+					<c:otherwise>
+						<button class="cta blue" onclick="toggleSubscribe(${ userDto.user.id }, this)">구독하기</button>
+					</c:otherwise>
+				</c:choose>
+				
+		</c:otherwise>
+	</c:choose>
+	
+	
 				<button class="modi" onclick="popup('.modal-info')">
 					<i class="fas fa-cog"></i>
 				</button>
@@ -37,15 +65,16 @@
 
 			<div class="subscribe">
 				<ul>
-					<li><a href=""> 게시물<span>3</span>
+<%-- 					<li><a href=""> 게시물<span>${ userDto.user.images.size() }</span> --%>
+					<li><a href=""> 게시물<span>${ userDto.imageCount }</span>
 					</a></li>
-					<li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>2</span>
+					<li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>${ userDto.subscribeCount }</span>
 					</a></li>
 				</ul>
 			</div>
 			<div class="state">
-				<h4>${ user.bio }</h4>
-				<h4>${ user.website }</h4>
+				<h4>${ userDto.user.bio }</h4>
+				<h4>${ userDto.user.website }</h4>
 			</div>
 		</div>
 		<!--유저정보 및 사진등록 구독하기-->
@@ -64,7 +93,7 @@
 
 				<!--아이템들-->
 
-		<c:forEach var="image"  items="${ user.images }"> <!-- EL표현식에서 변수명을 적으면 get함수가 자동 호출된다. -->
+		<c:forEach var="image"  items="${ userDto.user.images }"> <!-- EL표현식에서 변수명을 적으면 get함수가 자동 호출된다. -->
 					<div class="img-box">
 						<a href=""> <img src="/upload/${ image.postImageUrl }" />
 						</a>
@@ -100,8 +129,8 @@
 	</div>
 </div>
 
-<!--프로필사진 바꾸기 모달end-->
 
+<!--프로필사진 바꾸기 모달 : 구독자 전체를 뿌린다.-->
 <div class="modal-subscribe">
 	<div class="subscribe">
 		<div class="subscribe-header">
@@ -113,6 +142,8 @@
 
 		<div class="subscribe-list" id="subscribeModalList">
 
+
+		
 			<div class="subscribe__item" id="subscribeModalItem-1">
 				<div class="subscribe__img">
 					<img src="#" onerror="this.src='/images/person.jpeg'"/>
@@ -126,20 +157,20 @@
 			</div>
 
 
-			<div class="subscribe__item" id="subscribeModalItem-2">
-				<div class="subscribe__img">
-					<img src="#" onerror="this.src='/images/person.jpeg'"/>
-				</div>
-				<div class="subscribe__text">
-					<h2>ssar</h2>
-				</div>
-				<div class="subscribe__btn">
-					<button class="cta blue" onclick="toggleSubscribeModal(this)">구독취소</button>
-				</div>
-			</div>
+<!-- 			<div class="subscribe__item" id="subscribeModalItem-2"> -->
+<!-- 				<div class="subscribe__img"> -->
+<!-- 					<img src="#" onerror="this.src='/images/person.jpeg'"/> -->
+<!-- 				</div> -->
+<!-- 				<div class="subscribe__text"> -->
+<!-- 					<h2>ssar</h2> -->
+<!-- 				</div> -->
+<!-- 				<div class="subscribe__btn"> -->
+<!-- 					<button class="cta blue" onclick="toggleSubscribeModal(this)">구독취소</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			
 		</div>
 	</div>
-
 </div>
 
 

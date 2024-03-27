@@ -16,4 +16,12 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, Integer>{
 //	int mUnSubscribe(int fromUserId, int toUserId); // 성공 1 (변경된 행의 갯수가 리턴) , 실패 -1 하기위해서 리턴은 int로 처리 
 	void mUnSubscribe(int fromUserId, int toUserId); // 리턴 int -> void로 변경 (나중에 익셉션처리)
 	
+	
+	// 구독자 수 확인하기 (로그인된 아이디에서 확인해야함: 조건2)
+	@Query(value = "SELECT COUNT(*) FROM subscribe WHERE fromUserId = :principalId and toUserId = :pageUserId", nativeQuery = true)
+	int mSubscribeState(int principalId, int pageUserId);
+	
+	@Query(value = "SELECT COUNT(*) FROM subscribe WHERE fromUserId  = :pageUserId", nativeQuery = true)
+	int mSubscribeCount(int pageUserId);
+	
 }

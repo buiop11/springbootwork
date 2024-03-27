@@ -72,9 +72,9 @@ public class AuthController {
 			Map<String, String> errorMap = new HashMap<>();
 			for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
  				errorMap.put(error.getField(), error.getDefaultMessage());
- 				System.out.println("====================================");
- 				System.out.println(error.getDefaultMessage());
- 				System.out.println("====================================");
+// 				System.out.println("====================================");
+// 				System.out.println(error.getDefaultMessage());
+// 				System.out.println("====================================");
 			}
 			
 			// 에러 발생시 강제로 throw excpetion 발생
@@ -89,7 +89,7 @@ public class AuthController {
 			
 			// 회원가입처리 후 DB 저장된 User 객체로 리턴 
 			User userEntity = authService.signin(user);
-			System.out.println(userEntity);
+//			System.out.println(userEntity);
 			
 			return "auth/signin";
 			

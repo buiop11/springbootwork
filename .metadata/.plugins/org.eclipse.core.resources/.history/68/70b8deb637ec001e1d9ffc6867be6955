@@ -1,0 +1,10 @@
+package com.cos.photogramstart.web.dto.subscribe;
+
+
+// 전체 구독확인 위한 모달에 뿌림 
+public class SubscribeDto {
+	
+	private int userId; 
+	
+
+}

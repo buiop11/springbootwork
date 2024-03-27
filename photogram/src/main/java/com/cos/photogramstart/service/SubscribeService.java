@@ -1,12 +1,15 @@
 package com.cos.photogramstart.service;
 
-import javax.transaction.Transactional;
+
+import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.photogramstart.domain.subscribe.Subscribe;
 import com.cos.photogramstart.domain.subscribe.SubscribeRepository;
 import com.cos.photogramstart.handler.ex.CustomApiException;
+import com.cos.photogramstart.web.dto.subscribe.SubscribeDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +19,17 @@ public class SubscribeService {
 
 	
 	private final SubscribeRepository subscribeRepository;
+	
+	
+	@Transactional(readOnly = true)  // 구독리스트 (모달)
+	public List<SubscribeDto> subscribeList(int principalId, int pageUserId){
+		
+		
+		
+		
+		return null;
+	}
+	
 	
 	@Transactional
 	public void subscribe(int fromUserId, int toUserId) {  // 구독하기 
