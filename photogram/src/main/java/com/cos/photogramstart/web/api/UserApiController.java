@@ -35,7 +35,8 @@ public class UserApiController {
 		private final UserService userService;
 		private final SubscribeService subscribeService;
 		
-		@GetMapping("/api/user/{pageUserId}/subscribe")  // 페이지 주인이 구독하는 모든 정보(모달)
+		 // 페이지 주인이 구독하는 모든 정보(모달)
+		@GetMapping("/api/user/{pageUserId}/subscribe") 
 		public ResponseEntity<?> subscribeList(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails){
 			
 			List<SubscribeDto> subscribeDto = subscribeService.subscribeList(principalDetails.getUser().getId(), pageUserId);
