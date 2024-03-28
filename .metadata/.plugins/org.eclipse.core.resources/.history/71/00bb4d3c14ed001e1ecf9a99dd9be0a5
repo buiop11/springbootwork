@@ -76,7 +76,7 @@ function subscribeInfoModalOpen(pageUserId) {
 }
 
 // 구독정보 모달 리스트 그리기 
-function getSubscribeModalItem(u) {
+function getSubscribeModalItem() {
 	
 	let item = `<div class="subscribe__item" id="subscribeModalItem-${u.id}">
 	<div class="subscribe__img">
@@ -117,7 +117,7 @@ function toggleSubscribeModal(obj) {
 }
 
 // (4) 유저 프로파일 사진 변경 (완)
-function profileImageUpload() {
+function profileImageUpload(u) {
 	$("#userProfileImageInput").click();
 
 	$("#userProfileImageInput").on("change", (e) => {

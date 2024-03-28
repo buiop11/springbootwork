@@ -76,7 +76,7 @@ function subscribeInfoModalOpen(pageUserId) {
 }
 
 // 구독정보 모달 리스트 그리기 
-function getSubscribeModalItem(u) {
+function getSubscribeModalItem() {
 	
 	let item = `<div class="subscribe__item" id="subscribeModalItem-${u.id}">
 	<div class="subscribe__img">
