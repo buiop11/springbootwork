@@ -18,7 +18,8 @@ public class ImageController {
 	
 	private final ImageService imageService;
 
-	@GetMapping({"/", "/image/story"})
+	// 자신의 이미지말고, 구독한 사용자의 이미지들 리스트 
+	@GetMapping({"/", "/image/story"})  
 	public String strory() {
 		return "image/story"; 
 	}

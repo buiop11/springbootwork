@@ -1,0 +1,23 @@
+package com.cos.photogramstart.web.api;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cos.photogramstart.service.ImageService;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@RestController
+public class ImageApiController {
+
+	
+	private final ImageService imageService;
+	
+	// 로그인자가 구독한 구독사진들 가져오기 
+	@GetMapping("/api/image")  
+	public ResponseEntity<?> imageStroy(){
+		return null;
+	}
+	
+}

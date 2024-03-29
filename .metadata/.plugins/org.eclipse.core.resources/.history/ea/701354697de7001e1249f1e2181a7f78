@@ -1,5 +1,0 @@
-package com.cos.photogramstart.handler;
-
-public class ControllerExceptionHandler {
-
-}

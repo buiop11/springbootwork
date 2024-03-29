@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 
 import com.cos.photogramstart.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,7 +34,8 @@ public class Image {
 	private String caption; // 사진 설명 
 	private String postImageUrl; // 사진을 전송 받아서 그 사진을 서버의 특정 폴더에 저장 -> DB에 그 저장된 경로를 insert 
 	
-	// 등록자는 여러개의 이미지를 저장할 수 있다. 1: N , 이미지는 등록자가 1명이다. 1 : 1
+	// 등록자는 여러개의 이미지를 저장할 수 있다. 1: N , 이미지는 등록자가 1명이다. 1 : 1 
+	@JsonIgnoreProperties({"images"})
 	@JoinColumn(name = "userId")  // 포린키의 이름을 지정
 	@ManyToOne(fetch= FetchType.EAGER)   // 이미지를 select하면 조인해서 User정보를 같이 들고와라
 	private User user; // 등록자 -> 오브젝트로 dB에 저장하면 포린키로 저장됨 
