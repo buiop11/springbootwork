@@ -8,6 +8,8 @@ import java.util.UUID;
 
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +33,8 @@ public class ImageService {
 		
 		// 구독한 사진들 가져오기 
 		@Transactional(readOnly = true)  // 영속성 컨텐스트 변경감지를 해서, 더티체킹, (readOnly시 - flush(반영)을 하지 않는다. 
-		public List<Image> imageStory(int principalId){
-			List<Image> images = imageRepository.mStrory(principalId);
+		public Page<Image> imageStory(int principalId, Pageable pageable){
+			Page<Image> images = imageRepository.mStrory(principalId, pageable);
 			return images;
 		}
 		

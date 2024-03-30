@@ -7,16 +7,21 @@
 	(5) 댓글삭제
  */
 
+
+// 페이지에 필요한 함수 
+let page = 0;
+
 // (1) 스토리(구독 사진들) 로드하기
-function storyLoad() {addComment
+function storyLoad(page) {addComment
 
 	$.ajax({
-		url : `/api/image`
+		url : `/api/image?page=${page}`
 		, dataType : "json"
 	}).done(res=>{
 		console.log(res);		
 		
-		res.data.forEach((image)=>{
+//		res.data.forEach((image)=>{
+		res.data.content.forEach((image)=>{  // 페이징 추가 후 변경 
 			let storyItem = getStoryItem(image);
 			$("#storyList").append(storyItem);
 		});
@@ -88,8 +93,22 @@ function getStoryItem(image) {
 
 }
 
-// (2) 스토리 스크롤 페이징하기
-$(window).scroll(() => {
+// (2) 스토리 스크롤 페이징하기 (스크롤 할때마다 추가로 페이지를 불러온다.)
+// window. scroll 이벤트 
+$(window).scroll(() => {  
+
+//	console.log("스크롤 중");
+//	console.log("윈도우 scrollTop", $(window).scrollTop());
+//	console.log("문서의 높이", $(document).height()); // 고정
+//	console.log("윈도우 높이", $(window).height());     // 고정
+
+	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
+	console.log(checkNum);
+	
+	if(checkNum < 1 && checkNum > -1){
+		page++;
+		storyLoad(page); // 스토리 정보 호출 
+	}
 
 });
 
