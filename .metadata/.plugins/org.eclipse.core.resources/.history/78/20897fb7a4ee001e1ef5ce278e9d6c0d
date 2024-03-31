@@ -1,0 +1,50 @@
+package com.cos.photogramstart.domain.likes;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.cos.photogramstart.domain.image.Image;
+import com.cos.photogramstart.domain.user.User;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+//JPA - Java Persistance API ( 자바를 데이터로 영구적으로 저장(DB)할 수 있는 API를 제공 ) 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity  // 디비에 테이블을 생성 
+@Table(
+		uniqueConstraints = {
+				@UniqueConstraint(
+						name = "likes_uk", 
+						columnNames = { "imageId" , "userId" }
+				)
+		}
+)
+public class Likes {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // 번호 증가 전략이 데이터베이스를 따라간다. auto-increament
+	private int id;
+	
+	// 어떤 이미지를 누가 좋아요했는지 
+	private Image image;
+	private User user;
+	
+	@PrePersist
+	public void createDate() {
+		this.createDate = LocalDateTime.now();
+	}
+	
+}
