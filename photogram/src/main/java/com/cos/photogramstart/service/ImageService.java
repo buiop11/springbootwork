@@ -35,6 +35,19 @@ public class ImageService {
 		@Transactional(readOnly = true)  // 영속성 컨텐스트 변경감지를 해서, 더티체킹, (readOnly시 - flush(반영)을 하지 않는다. 
 		public Page<Image> imageStory(int principalId, Pageable pageable){
 			Page<Image> images = imageRepository.mStrory(principalId, pageable);
+			
+			// 시나리오 : 2(cos)로그인 -> 2번이 좋아요를 한 이미지인지 확인 필요
+ 			// 이미지의 좋아요 상태 가져오기 
+			images.forEach((image)->{
+				
+				image.getLikes().forEach((like)->{
+					if(like.getUser().getId() == principalId) { // 좋아요의 userid와 로그인 id확인 
+						image.setLikeState(true);
+					}
+				});
+				
+			});
+			
 			return images;
 		}
 		

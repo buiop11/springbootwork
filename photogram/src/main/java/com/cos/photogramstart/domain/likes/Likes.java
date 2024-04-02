@@ -40,14 +40,18 @@ public class Likes {  // N
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  // 번호 증가 전략이 데이터베이스를 따라간다. auto-increament
 	private int id;
 	
-	// 어떤 이미지를 누가 좋아요했는지 
-	// 하나의 이미지는 N의 좋아요 가능  image 1 : likes N 
-	// 하나의 유저는 좋아요를 N 가능 user 1: likes N
+	/* 
+	 	어떤 이미지를 누가 좋아요했는지 
+		하나의 이미지는 N의 좋아요 가능  image 1 : likes N 
+	    하나의 유저는 좋아요를 N 가능 user 1: likes N
+	 */
 	
+	// 무한참조됨 (오류)
 	@JoinColumn(name = "imageId")
 	@ManyToOne
 	private Image image;  // 1
 	
+	// 무한참조됨 (오류)
 	// 오류가 터지고 나서 잡아봅시다.
 	@JoinColumn(name = "userId")
 	@ManyToOne
@@ -55,6 +59,7 @@ public class Likes {  // N
 	
 	private LocalDateTime createDate;
 
+	//native query를 사용하면 안들어간다.
 	@PrePersist
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
