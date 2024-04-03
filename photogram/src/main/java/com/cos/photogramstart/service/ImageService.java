@@ -40,6 +40,9 @@ public class ImageService {
  			// 이미지의 좋아요 상태 가져오기 
 			images.forEach((image)->{
 				
+				// 좋아요 카운트 담기 
+				image.setLikeCount(image.getLikes().size());
+				
 				image.getLikes().forEach((like)->{
 					if(like.getUser().getId() == principalId) { // 좋아요의 userid와 로그인 id확인 
 						image.setLikeState(true);

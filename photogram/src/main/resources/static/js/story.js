@@ -68,7 +68,7 @@ function getStoryItem(image) {
 		</button>
 	</div>
 
-	<span class="like"><b id="storyLikeCount-1">3 </b>likes</span>
+	<span class="like"><b id="storyLikeCount-${ image.id }">${ image.likeCount } </b>likes</span>
 
 	<div class="sl__item__contents__content">
 		<p>${ image.caption }</p>
@@ -113,7 +113,7 @@ $(window).scroll(() => {
 	let checkNum = $(window).scrollTop() - ($(document).height() - $(window).height());
 //	console.log(checkNum);
 	
-	if(checkNum < 10 && checkNum > -10){
+	if(checkNum < 1  && checkNum > -1){
 		page++;
 		storyLoad(page); // 스토리 정보 호출 
 	}
@@ -124,14 +124,53 @@ $(window).scroll(() => {
 // (3) 좋아요, 안좋아요
 function toggleLike(imageId) {
 	let likeIcon = $(`#storyLikeIcon-${imageId}`);  // ${} 가 "" 쌍따옴표 안에 있으면 안먹는다. 백팁으로 `` 변경해야함
-	if (likeIcon.hasClass("far")) {
-		likeIcon.addClass("fas");
-		likeIcon.addClass("active");
-		likeIcon.removeClass("far");
-	} else {
-		likeIcon.removeClass("fas");
-		likeIcon.removeClass("active");
-		likeIcon.addClass("far");
+	
+	// 누를때 api 작동해야함. 
+	if (likeIcon.hasClass("far")) { // 좋아요 없는 경우 - 좋아요 하겠다.
+		
+		$.ajax({
+				type : "post"
+				, url : `/api/image/${imageId}/likes`			
+				, dataType : "json"
+		}).done(res=>{
+			
+			// 카운트 가져오기 
+			let likeCountStr = $(`#storyLikeCount-${imageId}`).text();  // 태그에 접근해서 1 추가하려고함
+//			console.log("좋아요 카운트", likeCountStr);
+			let likeCount = Number(likeCountStr + 1);
+//			console.log("좋아요 카운트 증가", likeCount);
+			$(`#storyLikeCount-${imageId}`).text(likeCount); // 증가 수 넣기 
+			
+			likeIcon.addClass("fas");
+			likeIcon.addClass("active");
+			likeIcon.removeClass("far");
+			
+		}).fail(error=>{
+			console.log("좋아요 오류", error);
+		});
+		
+		
+	} else {  // 좋아요 있어서 취소하는 경우
+		
+		$.ajax({
+				type : "delete"
+				, url : `/api/image/${imageId}/unlikes`			
+				, dataType : "json"
+		}).done(res=>{
+			
+			// 카운트 가져오기 
+			let likeCountStr = $(`#storyLikeCount-${imageId}`).text();  // 태그에 접근해서 1 추가하려고함
+			let likeCount = Number(likeCountStr - 1);
+			$(`#storyLikeCount-${imageId}`).text(likeCount); // 뺀 수 넣기 
+			
+			likeIcon.removeClass("fas");
+			likeIcon.removeClass("active");
+			likeIcon.addClass("far");
+			
+		}).fail(error=>{
+			console.log("좋아요 취소 오류", error);
+		});
+		
 	}
 }
 
