@@ -37,7 +37,7 @@ public class UserService {
 			throw new CustomException("해당 프로필 페이지는 없는 페이지입니다.");
 		});
 		
-		dto.setUser(userEntity);
+		dto.setUser(userEntity); // user를 통째로 담음
 		dto.setImageCount(userEntity.getImages().size()); // 뷰페이지에서 연산하지 않도록 dto에 넣기 
 		dto.setPageOwnerState(pageUserId == principalId); // 페이지 주인, 세션주인 동일여부
 		
@@ -47,6 +47,11 @@ public class UserService {
 		
 		dto.setSubscribeState(subscribeState == 1); 
 		dto.setSubscribeCount(subscribeCount);
+		
+		// 프로필 페이지에 자신의 이미지 좋아요 카운트 가져오기 
+		userEntity.getImages().forEach((image)->{
+			image.setLikeCount(image.getLikes().size());
+		});
 		
 //		return userEntity; // 기존
 		return dto;

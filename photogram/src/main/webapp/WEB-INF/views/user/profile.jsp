@@ -98,7 +98,8 @@
 						<a href=""> <img src="/upload/${ image.postImageUrl }" />
 						</a>
 						<div class="comment">
-							<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
+							<a href="#" class=""> <i class="fas fa-heart"></i><span>${ image.likeCount }</span> <!-- 자바 뒷단 UserService에서 처리시 -->
+<%-- 							<a href="#" class=""> <i class="fas fa-heart"></i><span>${ image.likes.size() }</span> <!-- 자바 뒷단 없이. 연산을 앞단에서 한다. 좋지않다심--> --%>
 							</a>
 						</div>
 					</div>

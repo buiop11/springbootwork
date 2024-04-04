@@ -21,6 +21,7 @@ public class UserController {
 	
 	private final UserService userService;
 	
+	// 유저 프로필
 	@GetMapping("/user/{pageUserId}")
 	public String profile(@PathVariable int pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {  // 페이지유저, 세션 유저 
 		

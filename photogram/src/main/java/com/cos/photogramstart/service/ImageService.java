@@ -82,5 +82,11 @@ public class ImageService {
 			// 객체를 찍기위해서 image.javaa 파일에 toString 함수 만들어서 user를 지워줬음.
 			
 		}
+		
+		// 인기사진 
+		@Transactional(readOnly = true)
+		public List<Image> popularImage() {
+			return imageRepository.mPopular();
+		}
 	
 }
