@@ -3,8 +3,8 @@ function update(userId, event) {
 	
 	event.preventDefault(); // 폼태그 액션을 막기 
 	
-	let data = $("#profileUpdate").serialize();  // jquery 로 id 찾기
-	console.log(data);
+	let data = $("#profileUpdate").serialize();  // jquery 로 id 찾기 key= value
+//	console.log(data);
 
 	$.ajax({
 		type: "put",

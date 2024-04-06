@@ -26,7 +26,7 @@ public class ImageService {
 
 		private final ImageRepository imageRepository;
 	
-		// yml fil 경로 가져오기  @Value  : org.springboot 꺼
+		// yml file 경로 가져오기  @Value  : org.springboot 꺼
 		@Value("${file.path}")
 		private String uploadFolder;
 

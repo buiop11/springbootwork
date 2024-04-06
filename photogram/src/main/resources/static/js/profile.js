@@ -116,8 +116,18 @@ function getSubscribeModalItem(u) {
 //	}
 //}
 
-// (3) 유저 프로파일 사진 변경 (완)
-function profileImageUpload() {
+	
+// (3) 유저 프로파일 사진 변경 -> 버튼 클릭시 input file 실행되도록 함 
+function profileImageUpload(pageUserId, principalId) {
+	
+	//	console.log("pageUserId : ", pageUserId );
+	//	console.log("principalId : ", principalId );
+	
+	 if(pageUserId != principalId){  // 유저와 로그인 유저가 다르면 아무 것도 진행되지 않는다.
+	 	alert("프로필 사진을 수정할 수 없는 유저입니다.");
+		 return;
+	 }
+	
 	$("#userProfileImageInput").click();
 
 	$("#userProfileImageInput").on("change", (e) => {
@@ -128,14 +138,35 @@ function profileImageUpload() {
 			return;
 		}
 
-		// 사진 전송 성공시 이미지 변경
-		let reader = new FileReader();
-		reader.onload = (e) => {
-			$("#userProfileImage").attr("src", e.target.result);
-		}
-		reader.readAsDataURL(f); // 이 코드 실행시 reader.onload 실행됨.
-	});
-}
+		// 서버에 이미지 전송 
+		let profileImageForm = $("#userProfileImageForm")[0];
+		//		console.log(profileImageForm);
+		// FormData 객체를 이용하면 form 태그의 필드와 그 값을 나타내는 일련의 key/value 쌍을 담을 수 있다. 
+		let formData = new FormData(profileImageForm);  // 폼태그 자체를 넣으면 값으로 담긴다.
+		
+		$.ajax({
+			type : "put" 
+			, url : `/api/user/${principalId}/profileImageUrl`
+			, data: formData
+			, contentType : false   	// 지정을안하면 기본 x-www-form-urlencoded 이렇게 파싱 되서 파일전송이 안됨 (필수)
+			, processData: false   		// contentType을 false로 줬을 때 QueryString 자동설정되는 것을 해제 (필수)
+			, enctype : "multipart/form-data"  // 폼태그 옆에 쓰면 여기 안써도 됨. 여기 쓰는게 좋음 
+			, dataType : "json"  			// 리턴은 json
+			
+		}).done(res=>{
+				// 사진 전송 성공시 이미지 변경
+				let reader = new FileReader();
+				reader.onload = (e) => {
+					$("#userProfileImage").attr("src", e.target.result);
+				}
+				reader.readAsDataURL(f); // 이 코드 실행시 reader.onload 실행됨.
+			
+		}).fail(error=>{
+			console.log("프로필사진 변경 오류", error);
+		});
+		
+	});  // $("#userProfileImageInput").on("change", ~ 
+}	
 
 
 // (4) 사용자 정보 메뉴 열기 닫기
