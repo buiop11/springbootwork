@@ -7,6 +7,8 @@
 	(5) 댓글삭제
  */
 
+// (0) 현재 로그인한 사용자 아이디 ( header.jsp 에 저장)
+let principalId = $("#principalId").val();
 
 // 페이지에 필요한 함수 
 let page = 0;
@@ -74,28 +76,36 @@ function getStoryItem(image) {
 		<p>${ image.caption }</p>
 	</div>
 
-	<div id="storyCommentList-${ image.id }">
+	<div id="storyCommentList-${ image.id }">`;
 
-		<div class="sl__item__contents__comment" id="storyCommentItem-1">
+	// 이미지에 따른 코멘트 처리 
+	 image.comments.forEach((comment)=>{
+		 item += `<div class="sl__item__contents__comment" id="storyCommentItem-${ comment.id }">
 			<p>
-				<b>Lovely :</b> 부럽습니다.
-			</p>
+				<b>${ comment.user.username } :</b> ${ comment.content }
+			</p>`;
 
-			<button>
-				<i class="fas fa-times"></i>
-			</button>
+		if(principalId == comment.user.id){
+			 item += `<button onclick="deleteComment(${ comment.id })">
+								<i class="fas fa-times"></i>
+							</button>`;
+		}	
+		
+		item += `</div>`;
+	 });
+	
 
+
+	item += `
 		</div>
-
-	</div>
-
-	<div class="sl__item__input">
-		<input type="text" placeholder="댓글 달기..." id="storyCommentInput-${ image.id }" />
-		<button type="button" onClick="addComment(${ image.id })">게시</button>
+	
+		<div class="sl__item__input">
+			<input type="text" placeholder="댓글 달기..." id="storyCommentInput-${ image.id }" />
+			<button type="button" onClick="addComment(${ image.id })">게시</button>
+			</div>
+	
 		</div>
-
-	</div>
-</div>`;
+	</div>`;
 	
 	return item;
 
@@ -191,10 +201,10 @@ function addComment(imageId) {
 //	console.log(JSON.stringify(data)); // data값을 json으로 변환
 //	return;
 
-	if (data.content === "") {
-		alert("댓글을 작성해주세요!");
-		return;
-	}
+//	if (data.content === "") {
+//		alert("댓글을 작성해주세요!");
+//		return;
+//	}
 	
 	// 댓글 데이터 통신 
 	$.ajax({
@@ -205,27 +215,48 @@ function addComment(imageId) {
 		, dataType : "json"
 		
 	}).done(res=>{
-		console.log("댓글 작성 성공", res);
+		
+//		console.log("댓글 작성 성공", res);
+		
+			let comment = res.data;
+		
+			let content = `
+			  <div class="sl__item__contents__comment" id="storyCommentItem-${ comment.id }"> 
+			    <p>
+			      <b>${ comment.user.username } :</b>
+			      ${ comment.content }
+			    </p> 
+				    <button onclick="deleteComment(${ comment.id })">
+				    	<i class="fas fa-times"></i>
+				    </button>
+			   </div>`;
+			  
+			commentList.prepend(content);
+		
 	}).fail(error=>{
-		console.log("댓글 작성 오류", error);
+		console.log("댓글 작성 오류 + ", error.responseJSON.data.content);
+		alert(error.responseJSON.data.content);
 	});
 
-
-	let content = `
-			  <div class="sl__item__contents__comment" id="storyCommentItem-2""> 
-			    <p>
-			      <b>GilDong :</b>
-			      댓글 샘플입니다.
-			    </p>
-			    <button><i class="fas fa-times"></i></button>
-			  </div>
-	`;
-	commentList.prepend(content);
-	commentInput.val("");
+	commentInput.val("");   // 인풋필드를 비워준다. 
+	
 }
 
 // (5) 댓글 삭제
-function deleteComment() {
+function deleteComment(commentId) {
+
+	$.ajax({
+		type : "delete"
+		, url : `/api/comment/${commentId}`
+		, dataType : "json"
+	}).done(res=>{
+		console.log("댓글 삭제 성공", res);
+		
+		$(`#storyCommentItem-${ commentId }`).remove();
+		
+	}).fail(error=>{
+		 console.log("댓글 삭제 실패", error);
+	});
 
 }
 

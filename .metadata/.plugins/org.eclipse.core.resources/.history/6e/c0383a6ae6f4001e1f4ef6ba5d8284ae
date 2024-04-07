@@ -1,0 +1,19 @@
+package com.cos.photogramstart.web.dto.comment;
+
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+import lombok.Data;
+
+@Data
+public class CommentDto {
+
+	@NotBlank  // 빈값이거나 null, 빈공백 체크 
+	private String content;
+	@NotBlank  // 빈값이거나 null 체크 
+	private Integer imageId;  // int로 하면 에러, Integer로 하면 가능 
+	
+	// toEntity가 필요없다.
+	
+}

@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="UserProfile"/>
+		<item key="selection" value="addComment"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="addComment"/>
+			<item value="profileImageUpload"/>
+			<item value="userProfileImageInput"/>
+			<item value="modal-image"/>
 			<item value="userProfile"/>
 			<item value="fas"/>
 			<item value="fa-hear"/>
 			<item value="fa-heart"/>
-			<item value="fa-heart far"/>
-			<item value="toggleLike"/>
-			<item value="checknum"/>
-			<item value="getSubscribeModalItem"/>
-			<item value="subscribeInfoModalOpen"/>
-			<item value="modal-subscribe"/>
-			<item value="love"/>
-			<item value="toggleSubscribe"/>
-			<item value="게시물"/>
-			<item value="취소"/>
 		</list>
 		<list key="replacehistory">
 		</list>

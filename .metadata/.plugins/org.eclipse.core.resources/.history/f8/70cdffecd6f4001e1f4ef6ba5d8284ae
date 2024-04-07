@@ -1,0 +1,32 @@
+package com.cos.photogramstart.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.cos.photogramstart.domain.comment.Comment;
+import com.cos.photogramstart.domain.comment.CommentRepository;
+import com.cos.photogramstart.domain.user.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RequiredArgsConstructor
+@Service
+public class CommentService {
+
+	private final CommentRepository commentRepository;
+	
+	
+	@Transactional
+	public Comment writeComment(String content,  int imageId, int userId) {
+		
+//		userRepository.findById(userId); //  이런거 하지 말고 네이티브 쿼리를 만들으라. 
+		
+		return null;
+	}
+	
+	@Transactional
+	public void deleteComment() {
+		
+	}
+	
+}
