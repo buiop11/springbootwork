@@ -67,33 +67,35 @@ public class AuthController {
 		
 		// 에러가 발생한 경우 - 오류페이지 리턴 
 		// bindingResult : 스프링이 제공하는 검증 오류 처리, 보관하는 객체
-		if(bindingResult.hasErrors()) {
-			
-			Map<String, String> errorMap = new HashMap<>();
-			for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
- 				errorMap.put(error.getField(), error.getDefaultMessage());
-// 				System.out.println("====================================");
-// 				System.out.println(error.getDefaultMessage());
-// 				System.out.println("====================================");
-			}
-			
-			// 에러 발생시 강제로 throw excpetion 발생
-//			throw new RuntimeException("유효성 검사 에러"); // handler 패키지에 ControllerException에서 Runtime 가져감 
-			throw new CustomValidationException("유효성 검사 에러", errorMap);
-			
-		} else {
+//		if(bindingResult.hasErrors()) {
+//			
+//			Map<String, String> errorMap = new HashMap<>();
+//			for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
+// 				errorMap.put(error.getField(), error.getDefaultMessage());
+//// 				System.out.println("====================================");
+//// 				System.out.println(error.getDefaultMessage());
+//// 				System.out.println("====================================");
+//			}
+//			
+//			// 에러 발생시 강제로 throw excpetion 발생
+////			throw new RuntimeException("유효성 검사 에러"); // handler 패키지에 ControllerException에서 Runtime 가져감 
+//			throw new CustomValidationException("유효성 검사 에러", errorMap);
+//			
+//		} else {
 
 			// User <- signUpDto
 			User user = signupDto.toEntity();
 			log.info(user.toString());
 			
 			// 회원가입처리 후 DB 저장된 User 객체로 리턴 
-			User userEntity = authService.signin(user);
+//			User userEntity = authService.signin(user);
+			authService.signin(user);
 //			System.out.println(userEntity);
 			
+			// 로그 남기는 후처리!!
 			return "auth/signin";
 			
-		}
+//		}
 		
 		
 		

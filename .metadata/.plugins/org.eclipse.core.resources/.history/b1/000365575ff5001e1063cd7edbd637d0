@@ -1,0 +1,5 @@
+package com.cos.photogramstart.handler.aop;
+
+public class ValidationAdvice {
+
+}

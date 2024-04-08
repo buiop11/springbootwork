@@ -201,10 +201,10 @@ function addComment(imageId) {
 //	console.log(JSON.stringify(data)); // data값을 json으로 변환
 //	return;
 
-//	if (data.content === "") {
-//		alert("댓글을 작성해주세요!");
-//		return;
-//	}
+	if (data.content === "") {
+		alert("댓글을 작성해주세요!");
+		return;
+	}
 	
 	// 댓글 데이터 통신 
 	$.ajax({

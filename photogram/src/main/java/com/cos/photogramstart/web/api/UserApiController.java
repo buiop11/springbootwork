@@ -65,17 +65,17 @@ public class UserApiController {
 				@AuthenticationPrincipal PrincipalDetails principalDetails) {
 //			System.out.println(userUpdateDto);
 			
-			// 에러가 발생한 경우 - 오류페이지 리턴 (AuthController에서 사용하던것 그대로 가져옴)
-			if(bindingResult.hasErrors()) {
-				
-				Map<String, String> errorMap = new HashMap<>();
-				for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
-	 				errorMap.put(error.getField(), error.getDefaultMessage());
-				}
-				// 에러 발생시 강제로 throw excpetion 발생
-				throw new CustomValidationApiException("수정시 유효성 검사 실패함", errorMap);  // 새로 만든 Exceptino
-			
-			} else {
+			// 에러가 발생한 경우 - 오류페이지 리턴 (AuthController에서 사용하던것 그대로 가져옴) -> aop 만들어서 공통으로 사용하므로 주석처리
+//			if(bindingResult.hasErrors()) {
+//				
+//				Map<String, String> errorMap = new HashMap<>();
+//				for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
+//	 				errorMap.put(error.getField(), error.getDefaultMessage());
+//				}
+//				// 에러 발생시 강제로 throw excpetion 발생
+//				throw new CustomValidationApiException("수정시 유효성 검사 실패함", errorMap);  // 새로 만든 Exceptino
+//			
+//			} else {
 				
 				User userUpdateEntity = userService.UserUpdate(id, userUpdateDto.toEntity());
 				principalDetails.setUser(userUpdateEntity);  // 기존 시큐리티 세션 정보도 변경하기 
@@ -83,7 +83,8 @@ public class UserApiController {
 				// 응답시에 userUpdateEntity의 모든 getter 함수가 호출되고 JSON으로 파싱하여 응답한다.
 				// image가 생기고 또 image에서 user를 호출하기 때문. -> User.java에 image에 @JsonIgnoreProperties 붙여줌 
 				return new CMRespDto<>(1, "회원수정 완료", userUpdateEntity);  // 공통응답클래스로 리턴 
-			}
+				
+//			}
 		}
 		
 }

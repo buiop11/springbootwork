@@ -38,13 +38,13 @@ public class CommentApiController {
 //		System.out.println("==========" + commetDto);
 		
 		// 에러가 발생한 경우 - 오류페이지 리턴  bindingResult : 스프링이 제공하는 검증 오류 처리, 보관하는 객체 (파라미터내 순서 중요)
-		if(bindingResult.hasErrors()) {
-			Map<String, String> errorMap = new HashMap<>();
-			for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
- 				errorMap.put(error.getField(), error.getDefaultMessage());
-			}
-			throw new CustomValidationApiException("댓글 작성 유효성 검사 실패함", errorMap);    // 에러 발생시 강제로 throw excpetion 발생
-		}
+//		if(bindingResult.hasErrors()) {
+//			Map<String, String> errorMap = new HashMap<>();
+//			for(FieldError error : bindingResult.getFieldErrors()) {  // .getFieldError() 아니고 .getFieldErrors() : 리턴이 다름 
+// 				errorMap.put(error.getField(), error.getDefaultMessage());
+//			}
+//			throw new CustomValidationApiException("댓글 작성 유효성 검사 실패함", errorMap);    // 에러 발생시 강제로 throw excpetion 발생
+//		}
 		
 		Comment comment = commentService.writeComment(commentDto.getContent(), commentDto.getImageId(), principalDetails.getUser().getId());   // content, imageId, userId 
 		return new ResponseEntity<>(new CMRespDto<>(1, "댓글쓰기 성공", comment), HttpStatus.CREATED);

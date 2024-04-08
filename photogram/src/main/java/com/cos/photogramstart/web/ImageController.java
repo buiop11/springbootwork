@@ -45,7 +45,7 @@ public class ImageController {
 	@PostMapping("/image")  // 사진 등록 
 	public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {  // 사진등록정보, 등록자정보
 		
-		// 이미지가 넘어오지 않는 경우
+		// 이미지가 넘어오지 않는 경우 - 깍두기, 별도로 사용해야함.
 		if(imageUploadDto.getFile().isEmpty()) {
 			throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
 		}
