@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
-    <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
-    <fullyQualifiedTypeName name="org.qlrm.mapper.JpaResultMapper"/>
-    <fullyQualifiedTypeName name="javax.persistence.Query"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="com.cos.photogramstart.service.ImageService"/>
-    <fullyQualifiedTypeName name="org.springframework.data.web.PageableDefault"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Sort"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Sort.Direction"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
@@ -29,11 +19,9 @@
     <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
     <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="com.cos.photogramstart.domain.comment.CommentRepository"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="com.cos.photogramstart.service.CommentService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
@@ -42,15 +30,12 @@
     <fullyQualifiedTypeName name="com.cos.photogramstart.web.dto.comment.CommentDto"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
-    <fullyQualifiedTypeName name="com.cos.photogramstart.config.auth.PrincipalDetails"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="com.cos.photogramstart.web.dto.CMRespDto"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="com.cos.photogramstart.domain.image.Image"/>
-    <fullyQualifiedTypeName name="com.cos.photogramstart.domain.user.User"/>
-    <fullyQualifiedTypeName name="com.cos.photogramstart.domain.user.UserRepository"/>
     <fullyQualifiedTypeName name="com.cos.photogramstart.domain.comment.Comment"/>
     <fullyQualifiedTypeName name="javax.persistence.OrderBy"/>
     <fullyQualifiedTypeName name="com.cos.photogramstart.handler.ex.CustomApiException"/>
@@ -60,4 +45,19 @@
     <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotEmpty"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.cos.photogramstart.config.oauth.OAuth2DetailsService"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.OAuth2AuthenticationException"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.cos.photogramstart.domain.user.UserRepository"/>
+    <fullyQualifiedTypeName name="com.cos.photogramstart.domain.user.User"/>
+    <fullyQualifiedTypeName name="com.nimbusds.openid.connect.sdk.claims.UserInfo"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="org.springframework.security.oauth2.core.user.OAuth2User"/>
+    <fullyQualifiedTypeName name="com.cos.photogramstart.config.auth.PrincipalDetails"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </qualifiedTypeNameHistroy>

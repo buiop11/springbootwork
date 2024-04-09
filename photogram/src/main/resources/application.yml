@@ -35,6 +35,16 @@ spring:
     user:
       name: test
       password: 1234   
+      
+  #  oauth2:
+  #    client:
+   #     registration:
+  #        facebook:
+   #         client-id: id넣기 :이후 무조건 스페이스공백한개 있어야한다. 
+   #         client-secret: 시크릿코드        
+   #         scope: 
+    #        - public_profile
+    #        - email
 
 file:
   path: C:/workspace/springbootwork/upload/  

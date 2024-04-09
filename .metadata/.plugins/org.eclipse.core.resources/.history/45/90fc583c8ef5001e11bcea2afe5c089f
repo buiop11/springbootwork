@@ -1,0 +1,5 @@
+package com.cos.photogramstart.config.oauth;
+
+public class OAuth2DetailsService {
+
+}

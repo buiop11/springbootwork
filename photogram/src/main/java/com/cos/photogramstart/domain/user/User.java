@@ -32,7 +32,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  // 번호 증가 전략이 데이터베이스를 따라간다. auto-increament
 	private int id;
 	
-	@Column(length = 20, unique = true)  // 유니크 처리 
+	@Column(length = 100, unique = true)  // 유니크 처리 , OAuth2 로그인을 위해 컬럼 늘리기 
 	private String username;
 	
 	@Column(nullable = false) // persistence에서 처리 하는거, null 불가

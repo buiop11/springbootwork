@@ -2,21 +2,34 @@ package com.cos.photogramstart.config.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+
 import com.cos.photogramstart.domain.user.User;
 import lombok.Data;
 
 @Data
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails, OAuth2User {  // 타사이트 로그인도 여기 담기도록 처리 
 
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
+	// oauth2
+	private Map<String, Object> attributes;
+	
 	
 	// 생성자 - user을 담아서 생성
 	public PrincipalDetails(User user) {
 		this.user = user;
+	}
+	
+	// oauth2 확인용 생성자
+	public PrincipalDetails(User user, Map<String, Object> attributes) {
+		this.user = user;
+		this.attributes = attributes;
 	}
 	
 	@Override
@@ -66,6 +79,18 @@ public class PrincipalDetails implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	
+	// ==  아래 OAuth2 의 오버라이드 2개!!  =====
+	@Override
+	public Map<String, Object> getAttributes() {
+		return attributes;   // {id: 2222~ , name: 등 페이스북에서 받은 정보 
+	}
+
+	@Override
+	public String getName() {
+		return (String) attributes.get("name");
 	}
 
 }
