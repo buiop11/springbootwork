@@ -39,9 +39,9 @@ spring:
   #  oauth2:
   #    client:
    #     registration:
-  #        facebook:
-   #         client-id: id넣기 :이후 무조건 스페이스공백한개 있어야한다. 
-   #         client-secret: 시크릿코드        
+  #        naver:
+   #         client-id: 3O5OFLo4zgFUKD8i91_I 
+   #         client-secret: e_VlsZsKcy       
    #         scope: 
     #        - public_profile
     #        - email
