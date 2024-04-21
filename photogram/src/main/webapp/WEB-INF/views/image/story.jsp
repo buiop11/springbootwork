@@ -9,7 +9,6 @@
 
 			<!--전체 리스트 아이템 / stroy.js 에서 출력 -->
 			
-			
 <!-- <div class="story-list__item"> -->
 <!-- 	<div class="sl__item__header"> -->
 <!-- 		<div> -->

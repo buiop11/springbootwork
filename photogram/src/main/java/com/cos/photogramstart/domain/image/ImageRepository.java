@@ -10,8 +10,8 @@ public interface ImageRepository extends JpaRepository<Image, Integer>{
 	
 	
 //	@Query(value="SELECT * FROM image WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId  = :principalId) ORDER BY id DESC", nativeQuery = true)
-//	@Query(value="SELECT * FROM image WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId  = :principalId)", nativeQuery = true)
-	@Query(value="SELECT * FROM image WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId  = :principalId) or userId = :principalId ", nativeQuery = true) // 내꺼도 추가..?
+//	@Query(value="SELECT * FROM image WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId  = :principalId) or userId = :principalId ", nativeQuery = true) // 내꺼도 추가..?
+	@Query(value="SELECT * FROM image WHERE userId IN (SELECT toUserId FROM subscribe WHERE fromUserId  = :principalId)", nativeQuery = true)
 	Page<Image> mStrory(int principalId, Pageable pageable);
 	// 	List<Image> mStrory(int principalId, Pageable pageable);
 	//  Pageable pageable : 자동으로 알아서 최신순으로 3개씩 가져온다, 리턴타입 List->Page로 변경 

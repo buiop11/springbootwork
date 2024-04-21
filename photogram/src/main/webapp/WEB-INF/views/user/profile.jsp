@@ -81,7 +81,7 @@
 	</div>
 </section>
 
-<!--게시물컨섹션-->
+<!--나의 게시물컨섹션-->
 <section id="tab-content">
 	<!--게시물컨컨테이너-->
 	<div class="profileContainer">
@@ -91,20 +91,17 @@
 			<div class="tab-1-content-inner">
 
 				<!--아이템들-->
-
-		<c:forEach var="image"  items="${ userDto.user.images }"> <!-- EL표현식에서 변수명을 적으면 get함수가 자동 호출된다. -->
-					<div class="img-box">
-						<a href=""> <img src="/upload/${ image.postImageUrl }" />
-						</a>
-						<div class="comment">
-							<a href="#" class=""> <i class="fas fa-heart"></i><span>${ image.likeCount }</span> <!-- 자바 뒷단 UserService에서 처리시 -->
-<%-- 							<a href="#" class=""> <i class="fas fa-heart"></i><span>${ image.likes.size() }</span> <!-- 자바 뒷단 없이. 연산을 앞단에서 한다. 좋지않다심--> --%>
-							</a>
-						</div>
-					</div>
-		</c:forEach>
-
+				<c:forEach var="image"  items="${ userDto.user.images }"> <!-- EL표현식에서 변수명을 적으면 get함수가 자동 호출된다. -->
+							<div class="img-box">
+								<a href=""> <img src="/upload/${ image.postImageUrl }" /></a>
+								<div class="comment">
+									<a href="#" class=""> <i class="fas fa-heart"></i><span>${ image.likeCount }</span></a> <!-- 자바 뒷단 UserService에서 처리시 -->
+<%-- 							<a href="#" class=""> <i class="fas fa-heart"></i><span>${ image.likes.size() }</span></a> <!-- 자바 뒷단 없이. 연산을 앞단에서 한다. 좋지않다심--> --%>
+								</div>
+							</div>
+				</c:forEach>
 				<!--아이템들end-->
+				
 			</div>
 		</div>
 	</div>
